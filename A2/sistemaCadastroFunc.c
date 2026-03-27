@@ -82,7 +82,7 @@ No* inserirFuncionario(No* raiz, No* novo){
 // 2) BUSCA DE FUNCIONÁRIO
 No* buscarFuncionario(No* raiz, int matricula){
 	
-	// Verifica se funcionário existe na árvore
+	// Verifica se árvore está vazia ou se funcionário existe na árvore
 	if(raiz == NULL || raiz->matricula == matricula){
 		return raiz;
 	}
