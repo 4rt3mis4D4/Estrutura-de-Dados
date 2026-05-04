@@ -11,7 +11,14 @@ void listarIntervalo(NO* raiz, int min, int max){
 	listarIntervalo(raiz->esq, min, max);
 
 	if(raiz->status == ATIVO && raiz->nivelSeveridade >= min && raiz->nivelSeveridade <= max) {
-		printf("\nID: %d | Tipo: %d | Severidade: %d | Regiao: %d\n", raiz->idEvento, raiz->tipo, raiz->nivelSeveridade, raiz->regiao);
+		printf("\nID: %d | STATUS: %s \nTipo: %d | Severidade: %d | Regiao: %d\n | Data: %02d/%02d/%04d %02d:%02d\n", 
+			raiz->idEvento,
+			raiz->status == ATIVO ? "Ativo" : "Resolvido",
+			raiz->tipo,
+			raiz->nivelSeveridade,
+			raiz->regiao,
+			raiz->dataHora.dia, raiz->dataHora.mes, raiz->dataHora.ano,
+    		raiz->dataHora.hora, raiz->dataHora.minuto);
 	}
 	listarIntervalo(raiz->dir, min, max);
 }
@@ -24,10 +31,14 @@ void relatorioRegiao(NO* raiz, RegiaoCidade regiao){
 	relatorioRegiao(raiz->esq, regiao); 
 
 	if (raiz->regiao == regiao && raiz->status == ATIVO){
-		printf("\nID: %d | Severidade: %d | Status: %s\n",
+		printf("\nID: %d | STATUS: %s \nTipo: %d | Severidade: %d | Regiao: %d\n | Data: %02d/%02d/%04d %02d:%02d\n",
 			raiz->idEvento,
+			raiz->status == ATIVO ? "Ativo" : "Resolvido",
+			raiz->tipo,
 			raiz->nivelSeveridade,
-			raiz->status == ATIVO ? "Ativo" : "Resolvido"); 
+			raiz->regiao,
+			raiz->dataHora.dia, raiz->dataHora.mes, raiz->dataHora.ano,
+    		raiz->dataHora.hora, raiz->dataHora.minuto);
 	}
 	relatorioRegiao(raiz->dir, regiao);
 }
@@ -42,7 +53,14 @@ void listarIntervaloID(NO* raiz, int idMin, int idMax){
 	}
 
 	if (raiz->idEvento >= idMin && raiz->idEvento <= idMax){
-		printf("\nID: %d | Status: %s\n", raiz->idEvento, (raiz->status == ATIVO ? "Ativo" : "Resolvido"));
+		printf("\nID: %d | STATUS: %s \nTipo: %d | Severidade: %d | Regiao: %d\n | Data: %02d/%02d/%04d %02d:%02d\n", 
+			raiz->idEvento,
+			raiz->status == ATIVO ? "Ativo" : "Resolvido",
+			raiz->tipo,
+			raiz->nivelSeveridade,
+			raiz->regiao,
+			raiz->dataHora.dia, raiz->dataHora.mes, raiz->dataHora.ano,
+    		raiz->dataHora.hora, raiz->dataHora.minuto);
 	}
 
 	if(raiz->idEvento < idMax){
